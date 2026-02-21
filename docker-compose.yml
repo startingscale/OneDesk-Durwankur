@@ -16,8 +16,8 @@ services:
     container_name: OneDesk
     image: pepperlabs/peppermint:latest
     ports:
-      - 1000:3000
-      - 1001:5003
+      - 3000:3000
+      - 5003:5003
 # If running via Docker on a hypervisor, enable DNS.
 #    dns:
 #      - 1.1.1.1
