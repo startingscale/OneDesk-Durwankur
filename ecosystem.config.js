@@ -10,7 +10,8 @@ module.exports = {
       watch: false,
       env: {
         NODE_ENV: "production",
-        PORT: 3000, // Change this to your desired port
+        PORT: process.env.PORT || 3000,
+        HOSTNAME: "0.0.0.0",
       },
     },
     {
@@ -27,7 +28,9 @@ module.exports = {
         DB_USERNAME: process.env.DB_USERNAME,
         DB_PASSWORD: process.env.DB_PASSWORD,
         DB_HOST: process.env.DB_HOST,
-        secret: process.env.SECRET,
+        DB_PORT: process.env.DB_PORT || "5432",
+        DB_DATABASE: process.env.DB_DATABASE,
+        SECRET: process.env.SECRET,
       },
     },
   ],
