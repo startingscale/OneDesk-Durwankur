@@ -1,4 +1,4 @@
-// @ts-nocheck
+﻿// @ts-nocheck
 import {
   Command,
   CommandGroup,
@@ -578,7 +578,7 @@ export default function Ticket() {
   }, [debouncedValue]);
 
   async function loadFromStorage() {
-    const storageString = data.ticket.detail as PartialBlock[];
+    const storageString = (data.ticket as any).detail as PartialBlock[];
     // if (storageString && isJsonString(storageString)) {
     //   return JSON.parse(storageString) as PartialBlock[]
     // } else {
@@ -594,7 +594,7 @@ export default function Ticket() {
 
   async function convertHTML() {
     const blocks = (await editor.tryParseHTMLToBlocks(
-      data.ticket.detail
+      (data.ticket as any).detail
     )) as PartialBlock[];
     editor.replaceBlocks(editor.document, blocks);
   }
@@ -694,7 +694,7 @@ export default function Ticket() {
         },
         body: JSON.stringify({
           id: ticket.id,
-          detail: ticket.detail,
+          detail: (ticket as any).detail,
           note: ticket.note,
           title: ticket.title,
           priority: priority,
@@ -931,7 +931,7 @@ export default function Ticket() {
                           <div className="break-words bg-white rounded-md text-black">
                             <Frame
                               className="min-h-[60vh] h-full max-h-[80vh] overflow-y-auto w-full"
-                              initialContent={data.ticket.detail}
+                              initialContent={(data.ticket as any).detail}
                             />
                           </div>
                         </div>
@@ -1504,3 +1504,4 @@ export default function Ticket() {
     </div>
   );
 }
+

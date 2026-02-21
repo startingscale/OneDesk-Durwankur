@@ -14,7 +14,7 @@ services:
 
   OneDesk:
     container_name: OneDesk
-    image: pepperlabs/OneDesk:latest
+    image: pepperlabs/peppermint:latest
     ports:
       - 1000:3000
       - 1001:5003

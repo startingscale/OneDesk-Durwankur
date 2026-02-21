@@ -1,4 +1,4 @@
-import useTranslation from "next-translate/useTranslation";
+﻿import useTranslation from "next-translate/useTranslation";
 import { useRouter } from "next/router";
 import Loader from "react-spinners/ClipLoader";
 
@@ -134,3 +134,4 @@ export default function Tickets() {
     </div>
   );
 }
+

@@ -1,4 +1,4 @@
-import { Button } from "@radix-ui/themes";
+﻿import { Button } from "@radix-ui/themes";
 import {
     AlertCircle,
     CheckCircle2,
@@ -119,7 +119,7 @@ export function CommandMenu() {
       return (
         ticket.title.toLowerCase().includes(searchLower) ||
         ticket.id.toString().includes(searchLower) ||
-        (ticket.detail || "").toLowerCase().includes(searchLower) ||
+        ((ticket as any).detail || "").toLowerCase().includes(searchLower) ||
         (ticket.assignedTo?.name || "").toLowerCase().includes(searchLower)
       );
     });
@@ -170,7 +170,7 @@ export function CommandMenu() {
         <Search className="h-4 w-4" />
         <span>Search</span>
         <kbd className="hidden md:inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium opacity-100">
-          <span className="text-xs">⌘</span>K
+          <span className="text-xs">âŒ˜</span>K
         </kbd>
       </Button>
       <CommandDialog open={open} onOpenChange={setOpen}>
@@ -224,7 +224,7 @@ export function CommandMenu() {
                     >
                       <span>{ticket.title}</span>
                       <span className="text-xs text-muted-foreground">
-                        #{ticket.id} • {ticket.assignedTo?.name || "Unassigned"} • {moment(ticket.createdAt).fromNow()}
+                        #{ticket.id} â€¢ {ticket.assignedTo?.name || "Unassigned"} â€¢ {moment(ticket.createdAt).fromNow()}
                       </span>
                     </CommandItem>
                   ))}
@@ -242,7 +242,7 @@ export function CommandMenu() {
                     >
                       <span>{ticket.title}</span>
                       <span className="text-xs text-muted-foreground">
-                        #{ticket.id} • {ticket.assignedTo?.name || "Unassigned"} • {moment(ticket.createdAt).fromNow()}
+                        #{ticket.id} â€¢ {ticket.assignedTo?.name || "Unassigned"} â€¢ {moment(ticket.createdAt).fromNow()}
                       </span>
                     </CommandItem>
                   ))}
@@ -367,3 +367,4 @@ export function CommandMenu() {
     </>
   );
 }
+

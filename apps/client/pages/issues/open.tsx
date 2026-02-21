@@ -1,4 +1,4 @@
-import useTranslation from "next-translate/useTranslation";
+﻿import useTranslation from "next-translate/useTranslation";
 import { useRouter } from "next/router";
 import { useEffect, useMemo, useState } from "react";
 import Loader from "react-spinners/ClipLoader";
@@ -273,7 +273,7 @@ export default function Tickets() {
         },
         body: JSON.stringify({
           id: ticket.id,
-          detail: ticket.detail,
+          detail: (ticket as any).detail,
           note: ticket.note,
           title: ticket.title,
           priority: priority,
@@ -801,3 +801,4 @@ export default function Tickets() {
     </div>
   );
 }
+
