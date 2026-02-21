@@ -347,7 +347,7 @@ export default function Ticket() {
                         <div className="break-words bg-white rounded-md p-4 text-black">
                           <Frame
                             className="min-h-[60vh] h-full w-full"
-                            initialContent={data.ticket.detail}
+                            initialContent={(data.ticket as any).detail}
                           >
                             {" "}
                           </Frame>
