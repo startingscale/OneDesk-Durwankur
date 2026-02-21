@@ -1,0 +1,35 @@
+﻿services:
+  - type: web
+    name: onedesk-durwankur
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
+    region: singapore
+    envVars:
+      - key: DB_USERNAME
+        fromDatabase:
+          name: onedesk-db
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: onedesk-db
+          property: password
+      - key: DB_HOST
+        fromDatabase:
+          name: onedesk-db
+          property: host
+      - key: DB_PORT
+        value: "5432"
+      - key: DB_DATABASE
+        fromDatabase:
+          name: onedesk-db
+          property: database
+      - key: SECRET
+        value: "OneDesk4life_Render_2024"
+
+databases:
+  - name: onedesk-db
+    plan: free
+    databaseName: onedesk_db
+    user: onedesk_admin
+    region: singapore
