@@ -1,4 +1,4 @@
-import { Ticket } from '@/shadcn/types/tickets';
+﻿import { Ticket } from '@/shadcn/types/tickets';
 import { toast } from "../hooks/use-toast";
 
 export function useTicketActions(token: string, refetch: () => void) {
@@ -74,7 +74,7 @@ export function useTicketActions(token: string, refetch: () => void) {
         },
         body: JSON.stringify({
           id: ticket.id,
-          detail: ticket.detail,
+          detail: (ticket as any).detail,
           note: ticket.note,
           title: ticket.title,
           priority: priority,
@@ -136,3 +136,4 @@ export function useTicketActions(token: string, refetch: () => void) {
     deleteTicket
   };
 }
+
