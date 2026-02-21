@@ -1,4 +1,4 @@
-// next.config.js
+﻿// next.config.js
 const withPlugins = require('next-compose-plugins');
 const removeImports = require('next-remove-imports')();
 const nextTranslate = require('next-translate');
@@ -26,3 +26,4 @@ module.exports = withPlugins(
     },
   }
 );
+
