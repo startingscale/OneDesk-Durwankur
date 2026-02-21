@@ -9,31 +9,31 @@ Requirements:
 version: "3.1"
 
 services:
-  peppermint_postgres:
-    container_name: peppermint_postgres
+  OneDesk_postgres:
+    container_name: OneDesk_postgres
     image: postgres:latest
     restart: always
     volumes:
       - pgdata:/var/lib/postgresql/data
     environment:
-      POSTGRES_USER: peppermint
+      POSTGRES_USER: OneDesk
       POSTGRES_PASSWORD: 1234
-      POSTGRES_DB: peppermint
+      POSTGRES_DB: OneDesk
 
-  peppermint:
-    container_name: peppermint
-    image: pepperlabs/peppermint:latest
+  OneDesk:
+    container_name: OneDesk
+    image: pepperlabs/OneDesk:latest
     ports:
       - 3000:3000
       - 5003:5003
     restart: always
     depends_on:
-      - peppermint_postgres
+      - OneDesk_postgres
     environment:
-      DB_USERNAME: "peppermint"
+      DB_USERNAME: "OneDesk"
       DB_PASSWORD: "1234"
-      DB_HOST: "peppermint_postgres"
-      SECRET: 'peppermint4life'
+      DB_HOST: "OneDesk_postgres"
+      SECRET: 'OneDesk4life'
 
 volumes:
  pgdata:

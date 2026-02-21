@@ -17939,9 +17939,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"peppermint@workspace:.":
+"OneDesk@workspace:.":
   version: 0.0.0-use.local
-  resolution: "peppermint@workspace:."
+  resolution: "OneDesk@workspace:."
   dependencies:
     "@types/react": "npm:18.2.38"
     "@types/react-dom": "npm:^18"

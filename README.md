@@ -1,10 +1,10 @@
-<h1 align="center">Welcome to Peppermint Ticket Management 🍵</h1>
+<h1 align="center">Welcome to OneDesk Ticket Management 🍵</h1>
 <p align="center">
   <img alt="Version" src="https://img.shields.io/badge/version-0.2-blue.svg?cacheSeconds=2592000" />
   <a target="_blank">
     <img alt="Github Stars: " src="https://img.shields.io/github/stars/jwandrews99/winter?style=social" />
   </a>
-  <img src="https://img.shields.io/docker/pulls/pepperlabs/peppermint" />
+  <img src="https://img.shields.io/docker/pulls/pepperlabs/OneDesk" />
 </p>
 <p align="center">
     <img src="./static/logo.svg" alt="Logo" height="80px" >
@@ -29,14 +29,14 @@
 
 ## 🐳 Installation with docker
 
-Check out the getting started guide if this is the first time you've used Peppermint:
+Check out the getting started guide if this is the first time you've used OneDesk:
 
 ```
 version: "3.1"
 
 services:
-  peppermint_postgres:
-    container_name: peppermint_postgres
+  OneDesk_postgres:
+    container_name: OneDesk_postgres
     image: postgres:latest
     restart: always
     ports:
@@ -44,24 +44,24 @@ services:
     volumes:
       - pgdata:/var/lib/postgresql/data
     environment:
-      POSTGRES_USER: peppermint
+      POSTGRES_USER: OneDesk
       POSTGRES_PASSWORD: 1234
-      POSTGRES_DB: peppermint
+      POSTGRES_DB: OneDesk
 
-  peppermint:
-    container_name: peppermint
-    image: pepperlabs/peppermint:latest
+  OneDesk:
+    container_name: OneDesk
+    image: pepperlabs/OneDesk:latest
     ports:
       - 3000:3000
       - 5003:5003
     restart: always
     depends_on:
-      - peppermint_postgres
+      - OneDesk_postgres
     environment:
-      DB_USERNAME: "peppermint"
+      DB_USERNAME: "OneDesk"
       DB_PASSWORD: "1234"
-      DB_HOST: "peppermint_postgres"
-      SECRET: 'peppermint4life'
+      DB_HOST: "OneDesk_postgres"
+      SECRET: 'OneDesk4life'
 
 volumes:
  pgdata:
@@ -79,12 +79,12 @@ admin@admin.com
 
 ## One click installers
 
-- We are now on linode marketplace we can be viewed here <a href="https://www.linode.com/marketplace/apps/peppermint-lab/peppermint/">here</a>
+- We are now on linode marketplace we can be viewed here <a href="https://www.linode.com/marketplace/apps/OneDesk-lab/OneDesk/">here</a>
 - We have a one line installer for Ubuntu and Debian (for the moment) and can be viewed here <a href="https://spearmint.sh/">here</a>
 
 ## Documentation
 
-We have started working on creating documentation for peppermint which covers development to general usage. Click <a href="https://docs.peppermint.sh">here</a> to be taken directly there.
+We have started working on creating documentation for OneDesk which covers development to general usage. Click <a href="https://docs.OneDesk.sh">here</a> to be taken directly there.
 
 ## Motivation
 
@@ -98,11 +98,11 @@ Give a ⭐️ if this project helped you!
 
 ## Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=Peppermint-Lab/peppermint&type=Date)](https://star-history.com/#Peppermint-Lab/peppermint&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=OneDesk-Lab/OneDesk&type=Date)](https://star-history.com/#OneDesk-Lab/OneDesk&Date)
 
 ## Activity
 ![Alt](https://repobeats.axiom.co/api/embed/9b568eb9e41b60f60fe155836b1ef0fb2a7b93b9.svg "Repobeats analytics image")
 
-- Website: [peppermint.sh](https://peppermint.sh/)
+- Website: [OneDesk.sh](https://OneDesk.sh/)
 - Github: [@potts99](https://github.com/potts99)
 - LinkedIn: [@jack-andrews-146852131](https://linkedin.com/in/jack-andrews-146852131)

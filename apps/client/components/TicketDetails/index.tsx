@@ -94,7 +94,7 @@ const priorityOptions = [
 
 export default function Ticket() {
   const router = useRouter();
-  const { t } = useTranslation("peppermint");
+  const { t } = useTranslation("OneDesk");
 
   const token = getCookie("session");
 

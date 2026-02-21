@@ -85,7 +85,7 @@ export default function Login({}) {
     <div className="min-h-screen bg-background flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <h2 className="mt-6 text-center text-3xl font-extrabold text-foreground">
-          Welcome to Peppermint
+          Welcome to OneDesk
         </h2>
       </div>
 
@@ -181,10 +181,10 @@ export default function Login({}) {
 
         <div className="mt-8 text-center flex flex-col space-y-2">
           <span className="font-bold text-foreground">
-            Built with 💚 by Peppermint Labs
+            Built with 💚 by OneDesk Labs
           </span>
           <a
-            href="https://docs.peppermint.sh/"
+            href="https://docs.OneDesk.sh/"
             target="_blank"
             className="text-foreground"
           >

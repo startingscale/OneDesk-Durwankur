@@ -2,8 +2,8 @@ import { useRouter } from 'next/router'
 import seoConfig from './seo.config.js'
 
 const config = {
-  logo: "Peppermint",
-  project: { link: 'https://github.com/Peppermint-Lab/peppermint' },
+  logo: "OneDesk",
+  project: { link: 'https://github.com/OneDesk-Lab/OneDesk' },
   useNextSeoProps() {
     const { route } = useRouter()
     const { url, images } = seoConfig.openGraph
@@ -13,7 +13,7 @@ const config = {
       openGraph: { url, images: [{ url: `${url}${images}` }] }
     }
   },
-  docsRepositoryBase: 'https://github.com/Peppermint-Lab/docs',
+  docsRepositoryBase: 'https://github.com/OneDesk-Lab/docs',
   sidebar: {
     defaultMenuCollapseLevel: 2,
     toggleButton: false,
@@ -31,8 +31,8 @@ const config = {
    banner: {
     key: 'release',
     text: (
-      <a href="https://github.com/Peppermint-Lab/peppermint/releases" target="_blank">
-        🎉 Peppermint 0.4.5 is here! Check it out now! 🚀
+      <a href="https://github.com/OneDesk-Lab/OneDesk/releases" target="_blank">
+        🎉 OneDesk 0.4.5 is here! Check it out now! 🚀
       </a>
     )
   },
