@@ -3,6 +3,10 @@
 WORKDIR /app
 COPY . .
 
+# enable modern yarn (berry)
+RUN corepack enable
+RUN corepack prepare yarn@4.2.2 --activate
+
 RUN yarn install
 RUN yarn build
 
