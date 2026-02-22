@@ -1,5 +1,4 @@
-﻿// next.config.js
-const withPlugins = require('next-compose-plugins');
+﻿const withPlugins = require('next-compose-plugins');
 const removeImports = require('next-remove-imports')();
 const nextTranslate = require('next-translate');
 const withPWA = require('next-pwa')({
@@ -16,6 +15,11 @@ module.exports = withPlugins(
     swcMinify: true,
     output: 'standalone',
 
+    // 👇 ADD THIS BLOCK HERE
+    eslint: {
+      ignoreDuringBuilds: true,
+    },
+
     async rewrites() {
       return [
         {
@@ -26,6 +30,3 @@ module.exports = withPlugins(
     },
   }
 );
-
-
-

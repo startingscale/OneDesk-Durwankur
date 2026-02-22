@@ -4,5 +4,5 @@ module.exports = {
   pages: {
     "*": ["OneDesk"],
   },
-  localeDetection: true,
+  localeDetection: false,
 };
