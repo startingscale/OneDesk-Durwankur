@@ -15,41 +15,55 @@ export default function Login({}) {
 
   async function postData() {
     try {
-      await fetch(`/api/v1/auth/login`, {
+      setStatus("loading");
+
+      const response = await fetch(`/api/v1/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
-      })
-        .then((res) => res.json())
-        .then(async (res) => {
-          if (res.user) {
-            setCookie("session", res.token);
-            if (res.user.external_user) {
-              router.push("/portal");
-            } else {
-              if (res.user.firstLogin) {
-                router.push("/onboarding");
-              } else {
-                router.push("/");
-              }
-            }
+      });
+
+      const res = await response.json();
+
+      if (res.user && res.token) {
+        // store session token
+        setCookie("session", res.token);
+
+        // normalize role safely
+        const role = res.user.role?.toUpperCase();
+
+        // role-based redirect
+        if (role === "ADMIN" || role === "AGENT") {
+          if (res.user.firstLogin) {
+            router.push("/onboarding");
           } else {
-            toast({
-              variant: "destructive",
-              title: "Error",
-              description:
-                "There was an error logging in, please try again. If this issue persists, please contact support via the discord.",
-            });
+            router.push("/dashboard");
           }
-        });
-    } catch (error) {
-      console.error(error);
+        } else {
+          router.push("/portal");
+        }
+
+        return;
+      }
+
+      // invalid credentials
       toast({
         variant: "destructive",
-        title: "Database Error",
-        description:
-          "This is an issue with the database, please check the docker logs or contact support via discord.",
+        title: "Login Failed",
+        description: "Invalid email or password.",
       });
+
+      setStatus("idle");
+    } catch (error) {
+      console.error("LOGIN ERROR:", error);
+
+      toast({
+        variant: "destructive",
+        title: "Server Error",
+        description: "Unable to connect to authentication server.",
+      });
+
+      setStatus("idle");
     }
   }
 
