@@ -60,24 +60,24 @@ export function ticketRoutes(fastify: FastifyInstance) {
           type: type ? type.toLowerCase() : "support",
           createdBy: createdBy
             ? {
-                id: createdBy.id,
-                name: createdBy.name,
-                role: createdBy.role,
-                email: createdBy.email,
-              }
+              id: createdBy.id,
+              name: createdBy.name,
+              role: createdBy.role,
+              email: createdBy.email,
+            }
             : undefined,
           client:
             company !== undefined
               ? {
-                  connect: { id: company.id || company },
-                }
+                connect: { id: company.id || company },
+              }
               : undefined,
           fromImap: false,
           assignedTo:
             engineer && engineer.name !== "Unassigned"
               ? {
-                  connect: { id: engineer.id },
-                }
+                connect: { id: engineer.id },
+              }
               : undefined,
           isComplete: Boolean(false),
         },
@@ -164,24 +164,24 @@ export function ticketRoutes(fastify: FastifyInstance) {
           type: type ? type.toLowerCase() : "support",
           createdBy: createdBy
             ? {
-                id: createdBy.id,
-                name: createdBy.name,
-                role: createdBy.role,
-                email: createdBy.email,
-              }
+              id: createdBy.id,
+              name: createdBy.name,
+              role: createdBy.role,
+              email: createdBy.email,
+            }
             : undefined,
           client:
             company !== undefined
               ? {
-                  connect: { id: company.id || company },
-                }
+                connect: { id: company.id || company },
+              }
               : undefined,
           fromImap: false,
           assignedTo:
             engineer && engineer.name !== "Unassigned"
               ? {
-                  connect: { id: engineer.id },
-                }
+                connect: { id: engineer.id },
+              }
               : undefined,
           isComplete: Boolean(false),
         },
@@ -321,29 +321,45 @@ export function ticketRoutes(fastify: FastifyInstance) {
       preHandler: requirePermission(["issue::read"]),
     },
     async (request: FastifyRequest, reply: FastifyReply) => {
-      const tickets = await prisma.ticket.findMany({
-        where: { isComplete: false, hidden: false },
-        orderBy: [
-          {
-            createdAt: "desc",
+      const user = await checkSession(request);
+
+      let tickets;
+
+      // ADMIN / AGENT → see all tickets
+      if (user.role === "ADMIN" || user.role === "AGENT") {
+        tickets = await prisma.ticket.findMany({
+          where: { isComplete: false, hidden: false },
+          orderBy: { createdAt: "desc" },
+          include: {
+            client: { select: { id: true, name: true, number: true } },
+            assignedTo: { select: { id: true, name: true } },
+            team: { select: { id: true, name: true } },
           },
-        ],
-        include: {
-          client: {
-            select: { id: true, name: true, number: true },
+        });
+      }
+      // USER → only own tickets
+      else {
+        tickets = await prisma.ticket.findMany({
+          where: {
+            isComplete: false,
+            hidden: false,
+            OR: [
+              { userId: user.id },
+              { email: user.email },
+            ],
           },
-          assignedTo: {
-            select: { id: true, name: true },
+          orderBy: { createdAt: "desc" },
+          include: {
+            client: { select: { id: true, name: true, number: true } },
+            assignedTo: { select: { id: true, name: true } },
+            team: { select: { id: true, name: true } },
           },
-          team: {
-            select: { id: true, name: true },
-          },
-        },
-      });
+        });
+      }
 
       reply.send({
-        tickets: tickets,
-        sucess: true,
+        tickets,
+        success: true,
       });
     }
   );
@@ -847,7 +863,7 @@ export function ticketRoutes(fastify: FastifyInstance) {
   fastify.get(
     "/api/v1/tickets/imap/all",
 
-    async (request: FastifyRequest, reply: FastifyReply) => {}
+    async (request: FastifyRequest, reply: FastifyReply) => { }
   );
 
   // GET all ticket templates
